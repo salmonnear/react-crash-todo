@@ -13,7 +13,7 @@ class App extends Component {
       {
         id: 2,
         title: 'Dinner',
-        completed: false
+        completed: true
       },
       {
         id: 3,
@@ -23,6 +23,16 @@ class App extends Component {
     ]
   };
 
+  markComplete = (id) => {
+    this.setState({ todos: this.state.todos.map(todo => {
+      if(todo.id === id) {
+        todo.completed = !todo.completed;
+      }
+      return todo;
+    }) });
+    
+}
+
 
   render() {
 
@@ -30,7 +40,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Todos todos = {this.state.todos} />  {/* passing in todos as prop */}
+        <Todos todos = {this.state.todos} markComplete={this.markComplete}/>  {/* passing in todos as prop */}
       </div>  
     )
   }
